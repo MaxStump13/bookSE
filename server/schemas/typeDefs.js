@@ -25,7 +25,6 @@ const typeDefs = gql`
 		authors: [String]
 		description: String
 		bookId: String
-		description: String
 		image: String
 		link: String
 		title: String
