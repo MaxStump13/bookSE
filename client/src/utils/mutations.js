@@ -1,34 +1,33 @@
 import { gql } from '@apollo/client';
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
-      token
-      user {
-        _id
-        username
-        email
-        bookCount
-        savedBooks {
-
-        }
-      }
-    }
-  }
+	mutation addUser($username: String!, $email: String!, $password: String!) {
+		addUser(username: $username, email: $email, password: $password) {
+			token
+			user {
+				_id
+				username
+				email
+			}
+			
+		}
+	}
 `;
 
 export const SAVE_BOOK = gql`
-  mutation saveBook($input: SavedBook) {
+  mutation saveBook($input: SavedBook!) {
     saveBook(input: $input) {
       _id
       username
+	  email
+	  bookCount
       savedBooks{
-        authors: 
-		    description: 
-		    bookId: 
-		    image: 
-		    link: 
-		    title: 
+        bookId
+		authors 
+		image 
+		link
+	    title
+		description  
       }
     }
   }
@@ -36,16 +35,18 @@ export const SAVE_BOOK = gql`
 export const REMOVE_BOOK = gql`
 	mutation removeBook($bookId: String!) {
 		removeBook(bookId: $bookId) {
-      _id
-      username
-      savedBooks{
-        authors: 
-		    description: 
-		    bookId: 
-		    image: 
-		    link: 
-		    title: 
-      }
+  			_id
+      		username
+	  		email
+	  		bookCount
+      		savedBooks{
+        		bookId
+				authors 
+				image 
+				link
+	    		title
+				description  
+			}
 		}
 	}
 `;
